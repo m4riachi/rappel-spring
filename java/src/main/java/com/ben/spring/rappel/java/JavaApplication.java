@@ -1,4 +1,4 @@
-package com.ben.spring.rappel.java.java;
+package com.ben.spring.rappel.java;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
