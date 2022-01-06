@@ -81,14 +81,10 @@ public class CategoryService {
 
     @Transactional
     public ResponseEntity<?> deleteById(Long id) {
-        List<String> errors = new ArrayList<String>();
+        Optional<Category> category = categoryDao.findById(id);
 
-        if (categoryDao.findById(id) == null) {
-            errors.add("Catégorie n'exiiste pas");
-        }
-
-        if (errors.size() > 0) {
-            return new ResponseEntity(new ReturnWithMessage("error", errors), HttpStatus.NOT_FOUND);
+        if (!category.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ReturnWithData("error", "Catégorie n'existe pas"));
         }
 
         categoryDao.deleteById(id);
