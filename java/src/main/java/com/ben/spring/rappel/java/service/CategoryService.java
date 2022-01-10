@@ -41,6 +41,7 @@ public class CategoryService {
 
     public ResponseEntity<?> findAll() {
         return ResponseEntity.ok(new ReturnWithData(categoryDao.findAll()));
+        //return new ResponseEntity(new ReturnWithData(categoryDao.findAll()), HttpStatus.BAD_GATEWAY);
     }
 
     public ResponseEntity<?> save(Category category) {

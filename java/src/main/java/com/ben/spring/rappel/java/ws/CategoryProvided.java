@@ -5,9 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.ben.spring.rappel.java.bean.Category;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @RequestMapping("stock/categories")
+@CrossOrigin("http://localhost:4200")
 public class CategoryProvided {
     @Autowired
     private CategoryService categoryService;
