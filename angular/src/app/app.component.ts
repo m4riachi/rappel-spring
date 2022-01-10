@@ -14,7 +14,8 @@ export class AppComponent {
     this.items = [
       {
         label:'Catégories',
-        icon:'pi pi-fw pi-th-large'
+        icon:'pi pi-fw pi-th-large',
+        routerLink: ['categories']
       }
     ];
   }
