@@ -1,0 +1,30 @@
+<div class="card">
+  <div *ngIf="loading">
+    <h2>Please Wait...</h2>
+  </div>
+  <div *ngIf="!loading">
+    <div *ngIf="notFound">
+      <h1 class="danger">Category Not Found</h1>
+      <button pButton type="button" label="Go Back" (click)="goBack()"  class="p-button-warning"></button>
+    </div>
+    <div *ngIf="!notFound">
+      <h5>{{ category.id > 0 ? "Update Category" : "New Category"}}</h5>
+      <ul *ngIf="errors">
+        <li *ngFor="let error of errors" class="danger">{{ error }}</li>
+      </ul>
+      <h1 class="success" *ngIf="success">Operation done successfully</h1>
+      <div class="field">
+        <label for="ref">Reference</label>
+        <input type="text" id="ref" [(ngModel)]="category.ref" class="inputfield w-full" pInputText />
+      </div>
+      <div class="field">
+        <label for="name">Name</label>
+        <input type="text" id="name" [(ngModel)]="category.name" class="inputfield w-full" pInputText />
+      </div>
+      <div class="field">
+        <button pButton type="button" label="Save" class="mr-3" (click)="save()" ></button>
+        <button pButton type="button" label="Go Back" (click)="goBack()" class="p-button-warning" ></button>
+      </div>
+    </div>
+  </div>
+</div>

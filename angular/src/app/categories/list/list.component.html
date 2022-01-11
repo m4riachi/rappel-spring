@@ -1,11 +1,17 @@
 <div class="content-section implementation">
+
+  <div class="my-2">
+    <a pButton type="button" label="New Category" routerLink="/category/create" ></a>
+  </div>
+
   <div class="card">
     <p-table [value]="categories" responsiveLayout="scroll">
       <ng-template pTemplate="header">
         <tr>
-          <th>Id</th>
-          <th>Ref</th>
+          <th width="20">Id</th>
+          <th width="160">Ref</th>
           <th>Name</th>
+          <th width="140">Action</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-category>
@@ -13,6 +19,10 @@
           <td>{{category.id}}</td>
           <td>{{category.ref}}</td>
           <td>{{category.name}}</td>
+          <td>
+            <a pButton type="button" icon="pi pi-pencil" class="mr-1" [routerLink]="['/category', category.id, 'edit']" ></a>
+            <button pButton type="button" icon="pi pi-trash" class="p-button-danger" (click)="delete(category.id)"></button>
+          </td>
         </tr>
       </ng-template>
     </p-table>

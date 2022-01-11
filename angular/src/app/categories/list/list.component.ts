@@ -15,4 +15,11 @@ export class ListComponent implements OnInit {
     this.categoryService.getCategories().then(data => this.categories = data);
   }
 
+  delete(id: number) {
+    if (confirm('Are you sure?')) {
+      this.categoryService.delete(id).then(() => {
+        this.categoryService.getCategories().then(data => this.categories = data);
+      });
+    }
+  }
 }

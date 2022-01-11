@@ -23,7 +23,10 @@ public class CategoryService {
         Optional<Category> category = categoryDao.findByRef(ref);
 
         if (!category.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ReturnWithData("error", "Catégorie n'existe pas"));
+            List<String> errors = new ArrayList<String>();
+            errors.add("Catégorie n'existe pas");
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ReturnWithData("error", errors));
         }
 
         return ResponseEntity.ok(new ReturnWithData(categoryDao.findByRef(ref)));
@@ -33,7 +36,10 @@ public class CategoryService {
         Optional<Category> category = categoryDao.findById(id);
 
         if (!category.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ReturnWithData("error", "Catégorie n'existe pas"));
+            List<String> errors = new ArrayList<String>();
+            errors.add("Catégorie n'existe pas");
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ReturnWithData("error", errors));
         }
 
         return ResponseEntity.ok(new ReturnWithData(category));
@@ -47,7 +53,7 @@ public class CategoryService {
     public ResponseEntity<?> save(Category category) {
         List<String> errors = new ArrayList<String>();
 
-        if (categoryDao.findByRef(category.getRef()) != null) {
+        if (categoryDao.findByRef(category.getRef()).isPresent()) {
             errors.add("Référence existe déja");
         }
 
@@ -56,7 +62,6 @@ public class CategoryService {
         }
 
         if (errors.size() > 0) {
-            System.out.println(errors);
             return new ResponseEntity(new ReturnWithMessage("error", errors), HttpStatus.BAD_GATEWAY);
         }
 
